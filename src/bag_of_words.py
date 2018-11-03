@@ -1,11 +1,12 @@
-from src import mod as dl
+from mod import data_lists as dl
 import matplotlib.pyplot as plt
 
-data = dl.data_lists.selected_reviews
+data = dl.selected_reviews
+image_location = "images"
 
 
 def rating_dist(data):
-    rating = {0, 0, 0, 0, 0}
+    rating = [0, 0, 0, 0, 0]
     for element in data:
         star = int(element[1])
         base = rating[star - 1]
@@ -13,17 +14,44 @@ def rating_dist(data):
     return rating
 
 
-def save_fig(figure):
-    return 0
-
-
-def star_distibution(data):
+def star_distribution(stars):
     plt.xlabel("Stars")
     plt.ylabel("Number Of Ratings")
     plt.title("Star Distribution")
-    plt.hist(data)
+    plt.bar([1, 2, 3, 4, 5], stars)
+    plt.savefig(image_location + "\\" + "Star_distribution.pdf")
     plt.show()
     return 0
 
-reviews = rating_dist(data)
-star_distibution(reviews)
+
+def star_rates(rate):
+    plt.xlabel("Stars")
+    plt.ylabel("Chance Of Rating")
+    plt.title("Star Distribution")
+    plt.bar([1, 2, 3, 4, 5], rate)
+    plt.savefig(image_location + "\\" + "Star_rates.pdf")
+    plt.show()
+    return 0
+
+
+def rate_of_distribution(stars):
+    total = 0
+    for z in stars:
+        total = total + z
+    rate = [x / total for x in stars]
+    return rate
+
+
+def graphing():
+    reviews = rating_dist(data)
+    star_distribution(reviews)
+    rate = rate_of_distribution(reviews)
+    star_rates(rate)
+
+
+def word_count():
+    for x in data:
+        print(x[0])
+
+
+word_count()
