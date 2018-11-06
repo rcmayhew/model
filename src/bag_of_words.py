@@ -1,4 +1,4 @@
-from mod import data_lists as dl
+from mod import data_review as dl
 import matplotlib.pyplot as plt
 
 data = dl.selected_reviews
@@ -49,9 +49,14 @@ def graphing():
     star_rates(rate)
 
 
+def find_space(review):
+
+
+
 def word_count():
     for x in data:
-        print(x[0])
+        y = x
+    print(y[0])
 
 
 word_count()

@@ -1,5 +1,7 @@
 # this is the first id to check ('JNXUYY8wbaaDmk3BPzlWw', 7968)
 
+import codecs
+
 file_review = "yelp_academic_dataset_review.json"
 file_location = "C:\Data\yelp"
 json_review = "%s\%s" % (file_location, file_review)
@@ -58,9 +60,9 @@ def get_reviews(biz_id):
 
 
 def add_data(data, name_of_var):
-    with open('mod\data_lists.py', 'a') as f:
+    with codecs.open('mod\data_review.py', 'a', 'utf-8') as f:
         f.write(name_of_var + " = " + str(data))
 
 
 review_list = get_reviews(tested_id)
-# add_data(review_list, "selected_reviews")
+add_data(review_list, "selected_reviews")
