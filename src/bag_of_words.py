@@ -49,8 +49,14 @@ def graphing():
     star_rates(rate)
 
 
-def find_space(review):
+def find_word(review, start):
+    
 
+
+def find_space(review, location):
+    if review[location] == ' ':
+        return True
+    return False
 
 
 def word_count():
