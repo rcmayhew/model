@@ -1,7 +1,9 @@
 from mod import data_review as dl
+from mod import dicts as alp
 import matplotlib.pyplot as plt
 
 data = dl.selected_reviews
+
 image_location = "images"
 
 
@@ -81,7 +83,19 @@ def find_space(review, location):
 
     return False, 0
 
+
 # need to convert words to all lower case to see the ammount of words
+def convert_to_alpha(word):
+    convertor = alp.alpha
+    letters = []
+    for ind, letter in enumerate(word):
+        if letter in convertor:
+            letters.append(convertor[letter])
+        else:
+            letters.append(letter)
+    new_word = ''.join(letters)
+    return new_word
+
 # then order the words
 
 
@@ -97,6 +111,7 @@ def word_count():
             review = x[0]
             while next_start < len(review):
                 word, next_start = find_word(review, next_start)
+                word = convert_to_alpha(word)
                 if word in words:
                     words[word] = words[word] + 1
                 else:
