@@ -1,5 +1,6 @@
 from mod import data_review as dl
 from mod import dicts as alp
+import codecs
 import matplotlib.pyplot as plt
 
 data = dl.selected_reviews
@@ -61,7 +62,6 @@ def find_word(review, start):
             break
         place = place + 1
     word = review[start:place]
-    print(word)
     return word, place
 
 
@@ -70,8 +70,8 @@ def find_space(review, location):
     long_char = review[location:location + 2]
     med_char = review[location:location + 1]
 
-    single_char_punctuation = [' ', '.', ',', ';', '!', '?', '(', ')', '-']
-    med_char_punctuation = ['--']
+    single_char_punctuation = [' ', '.', ',', ';', '!', '?', '(', ')', '-', '/']
+    med_char_punctuation = ['--', '\\']
     long_char_punctuation = ["\\n", '\\"']
 
     if char in single_char_punctuation:
@@ -96,7 +96,11 @@ def convert_to_alpha(word):
     new_word = ''.join(letters)
     return new_word
 
+
 # then order the words
+def add_data(data, name_of_var, typed):
+    with codecs.open('mod\words.py', typed, 'utf-8') as f:
+        f.write(name_of_var + " = " + str(data))
 
 
 def word_count():
@@ -104,7 +108,7 @@ def word_count():
     words = {}
     loop = 0
     for x in data:
-        if loop % 1000:
+        if loop % 1000 == 0:
             print(loop)
         loop = loop + 1
         if loop < 8000:
@@ -119,7 +123,14 @@ def word_count():
             next_start = 0
         else:
             break
+    sorted_words = sorted(words.items(), reverse=True, key=lambda x: x[1])
+    alpha_words = sorted(words.items(), reverse=False, key=lambda x: x[0])
     print(words)
+    return sorted_words, alpha_words
 
 
-word_count()
+words, alpha = word_count()
+print(alpha)
+add_data(words, "ordered_words", 'w')
+add_data(alpha, "\nalpha_words", 'a')
+
