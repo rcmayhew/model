@@ -1,9 +1,10 @@
-from mod import data_review as dl
-from mod import dicts as alp
+from src.shelf import data_review as dl
+from src.shelf import dicts as alp
 import codecs
 import matplotlib.pyplot as plt
 
 data = dl.selected_reviews
+important = alp.words
 
 image_location = "images"
 
@@ -25,6 +26,18 @@ def star_distribution(stars):
     plt.savefig(image_location + "\\" + "Star_distribution.pdf")
     plt.show()
     return 0
+
+def word_distribution(words, file, name):
+    plt.xlabel("Words")
+    plt.ylabel("Number Of Times Uesd")
+    plt.title(name)
+    domain = [x[0] for x in words]
+    rang = [x[1] for x in words]
+    length = 10
+    plt.bar(domain[0:length], rang[0:length])
+    plt.savefig(image_location + "\\" + file)
+    plt.show()
+
 
 
 def star_rates(rate):
@@ -131,6 +144,12 @@ def word_count():
 
 words, alpha = word_count()
 print(alpha)
-add_data(words, "ordered_words", 'w')
-add_data(alpha, "\nalpha_words", 'a')
+word_distribution(words, "Word_distribution.pdf", "Word distribution")
+important_words = []
+for x in words:
+    if x[0] in important:
+        important_words.append(x)
+word_distribution(important_words, "important_words.pdf", "Important Words Distribution")
+# add_data(words, "ordered_words", 'w')
+# add_data(alpha, "\nalpha_words", 'a')
 

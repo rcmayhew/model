@@ -11,10 +11,10 @@ then pull only the string and the star reviews of each review
 then store as either csv, numpy array, or pandas dataframe
 """
 
-from src import mod as dl
+from src import shelf as dl
 
 file_location = "C:\Data\yelp"
-store_location = "C:\\User\\1robb\PycharmProjects\hwhelp\mod"
+store_location = "src\shelf"
 file_review = "yelp_academic_dataset_review.json"
 file_biz = "yelp_academic_dataset_business.json"
 json_review = "%s\%s" % (file_location, file_review)

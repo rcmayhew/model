@@ -72,6 +72,15 @@ class SVM:
             self.b = opt_choice[1]
             latest_optimum = opt_choice[0][0]+step*2
 
+    def multi_fit(self, data):
+        """
+        search from k=1 to k=5 to find the max
+            each iteration
+        :param data:
+        :return:
+        """
+        pass
+
     @staticmethod
     def rbf_kernel(mat1, mat2, sigma):
 
