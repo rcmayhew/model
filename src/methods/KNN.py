@@ -1,5 +1,5 @@
-import numpy as np
-from src.methods import BOW
+import numpy as np # used for thier faster arraies
+from src.methods import BOW # This is the bag of words model that imports the words as an array
 
 from sklearn.model_selection import train_test_split  # for spliting data
 
@@ -135,6 +135,7 @@ class KNN:
         :param testing_class:
         :return:
         """
+        ### ADD CODE HERE!!!!!!!!! ###
         pass
 
 
