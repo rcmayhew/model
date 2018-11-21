@@ -63,14 +63,14 @@ class KNN:
 
     def __test_voting_point__(self, voting_points: list, trial_point: tuple):
         """
-        takes a testing point and checks if the new point is a
+        takes a trial point and checks if the new point is a
         contender to classify the instance being classified
         :param voting_points: list of (distance: float, class: int)
                             sorted by distance
         :param trial_point: (distance: float, class: int)
         :return: new voting_points:list, was it change:bool
         """
-        if len(voting_points) < self.k or trial_point[0] < voting_points[-1]:
+        if len(voting_points) < self.k or trial_point[0] < voting_points[-1][0]:
             voting_points.append(trial_point)
             voting_points = self.__clean_voting_list__(voting_points)
             return voting_points, True
@@ -81,7 +81,7 @@ class KNN:
         """
         makes the voting list ordered and the right size to never be longer than k
         :param voting_list:
-        :return: ordered list of votes size >= k
+        :return: ordered list of votes size <= k
         """
         voting_list = sorted(voting_list, key=lambda x: x[0])
         if len(voting_list) > self.k:
@@ -96,7 +96,7 @@ class KNN:
         """
         voting_list = []
         for index, row in enumerate(self.data):
-            print(row)
+            # print(row)
             space = self.__distance__(row, test_vector)
             data_group = space, self.class_data[index]
             self.__test_voting_point__(voting_list, data_group)
@@ -109,14 +109,15 @@ class KNN:
         :param voting_list: list of votes ordered by closest data points
         :return: the predicted class
         """
-        vote_dict = []
-        for vote in voting_list:
+        vote_dict = {}
+        for vote_tuple in voting_list:
+            vote = vote_tuple[1]
             if vote in vote_dict:
                 vote_dict[vote] = vote_dict[vote] + 1
             else:
                 vote_dict[vote] = 1
         vote_dict = sorted(vote_dict, reverse=True, key=lambda x: x[1])
-        return vote_dict[0]
+        return vote_dict[0][1]
 
     def __single_instance_classify__(self, test_vector):
         """
@@ -136,6 +137,8 @@ class KNN:
         :return:
         """
         ### ADD CODE HERE!!!!!!!!! ###
+        # will call __single_instance_classify__
+        # will call a __make_confustion_matrix__ function
         pass
 
 
