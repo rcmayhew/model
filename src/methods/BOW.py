@@ -70,6 +70,7 @@ class BOW:
         return np.asarray(listed_data)
 
     def parse_business_reviews(self, verbose=True, threshold=8000):
+        #first list on datalist is empty!!!
         data = dr.selected_reviews
         data_list = [[]]
         class_labels = []
@@ -85,10 +86,13 @@ class BOW:
                 data_list.append(array_split)
                 class_labels.append(classification)
             loop = loop + 1
-        return BOW.convert_to_numpy(data_list), BOW.convert_to_numpy(class_labels)
+
+        x = BOW.convert_to_numpy(data_list)
+        y = BOW.convert_to_numpy(class_labels)
+        return x[1:], y
 
 
-tested_class = BOW()
-data, classification = tested_class.parse_business_reviews()
-print(data)
-print(classification)
+# tested_class = BOW()
+# data, classification = tested_class.parse_business_reviews()
+# print(data)
+# print(classification)
