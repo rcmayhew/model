@@ -1,0 +1,1 @@
+__all__ = ['bash_embedded_script', 'words']

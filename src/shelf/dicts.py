@@ -77,3 +77,42 @@ triple_punctuation = {
     "\\n",
     '\\"'
 }
+
+"""!!!!!!!!!!!!!!!!!!!!!!!!!!!!"""
+
+NN_words_single_punc = {
+    '.',
+    ',',
+    ';',
+    '!',
+    '?',
+    '(',
+    ')',
+    '-',
+    '/'
+    "'"
+    '"'
+}
+
+NN_words_double_punc = {
+    '--',
+    '\\'
+}
+
+NN_words_triple_punc = {
+    '\\"',
+    "..."
+}
+
+NN_notwords_single_punc = {
+    ' ',
+}
+
+NN_notwords_double_punc = {
+    "\\n"
+}
+
+NN_notwords_triple_punc = {
+    "\\n"
+}
+
